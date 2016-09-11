@@ -1,6 +1,10 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: [
-    './src/index.js'
+    'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
+    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+    './app.jsx'
   ],
   output: {
     path: __dirname,
@@ -22,5 +26,8 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './'
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
