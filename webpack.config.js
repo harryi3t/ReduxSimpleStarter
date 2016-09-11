@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var WriteFilePlugin = require ('write-file-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -8,7 +9,7 @@ module.exports = {
     './src/app'
   ],
   output: {
-    path: __dirname,
+    path: path.join(__dirname, 'static'),
     publicPath: '/static',
     filename: 'bundle.js'
   },
@@ -20,7 +21,8 @@ module.exports = {
     }]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new WriteFilePlugin()
   ],
   resolve: {
     extensions: ['', '.js', '.jsx']
