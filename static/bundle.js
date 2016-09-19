@@ -21395,7 +21395,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'embed-responsive embed-responsive-16by9' },
-	          _react2.default.createElement('iframe', { src: videoUrl, frameBorder: '10px', className: 'embed-responsive-item' })
+	          _react2.default.createElement('iframe', { allowFullScreen: 'allowFullScreen', src: videoUrl, frameBorder: '10px', className: 'embed-responsive-item' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
