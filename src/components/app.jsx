@@ -24,7 +24,6 @@ class ReactYoutubeApp extends React.Component {
       this.state = {videos: [], selectedVideo: null};
 
       this.detectLocation((countryCode) => {
-        console.log('detectLocation', countryCode);
         if (!countryCode)
           return this.searchVideos();
 
@@ -38,7 +37,6 @@ class ReactYoutubeApp extends React.Component {
 
       navigator.geolocation.getCurrentPosition(function({coords}) {
         if (!coords) return next();
-        console.log(coords);
         var alpha3Code = wc([coords.longitude, coords.latitude]);
         var alpha2Code = alpha2CountryCodes[alpha3Code]
         return next(alpha2Code);
@@ -53,7 +51,6 @@ class ReactYoutubeApp extends React.Component {
         url = `${YOUTUBE_API_URL}`;
       if (countryCode)
         url = `${url}&regionCode=${countryCode}`;
-      console.log(url)
       axios.get(url)
       .then(({data}) => {
         this.setState({videos: data.items, selectedVideo: data.items[0]});

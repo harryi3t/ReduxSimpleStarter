@@ -13,7 +13,7 @@ class VideoDetail extends React.Component {
       if (!video)
         return <div>Loading...</div>
 
-      let videoId = video.id.videoId,
+      let videoId = video.id.videoId || video.id,
         videoUrl = `https://www.youtube.com/embed/${videoId}`,
         title = video.snippet.title,
         description = video.snippet.description;

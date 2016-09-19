@@ -19832,7 +19832,6 @@
 	    _this.state = { videos: [], selectedVideo: null };
 
 	    _this.detectLocation(function (countryCode) {
-	      console.log('detectLocation', countryCode);
 	      if (!countryCode) return _this.searchVideos();
 
 	      _this.searchVideos(null, countryCode);
@@ -19849,7 +19848,6 @@
 	        var coords = _ref.coords;
 
 	        if (!coords) return next();
-	        console.log(coords);
 	        var alpha3Code = wc([coords.longitude, coords.latitude]);
 	        var alpha2Code = _countryCodes2.default[alpha3Code];
 	        return next(alpha2Code);
@@ -19863,7 +19861,6 @@
 	      var url = '';
 	      if (term) url = YOUTUBE_SEARCH_URL + '&q=' + term;else url = '' + YOUTUBE_API_URL;
 	      if (countryCode) url = url + '&regionCode=' + countryCode;
-	      console.log(url);
 	      _axios2.default.get(url).then(function (_ref2) {
 	        var data = _ref2.data;
 
@@ -21382,7 +21379,7 @@
 	        'Loading...'
 	      );
 
-	      var videoId = video.id.videoId,
+	      var videoId = video.id.videoId || video.id,
 	          videoUrl = 'https://www.youtube.com/embed/' + videoId,
 	          title = video.snippet.title,
 	          description = video.snippet.description;
