@@ -6,7 +6,7 @@ var WriteFilePlugin = require ('write-file-webpack-plugin');
 var isLocal = process.argv[2] === '--dev';
 
 var moduleLoaders = ['babel'];
-var moduleEntry = ['./src/app'];
+var moduleEntry = ['./src/index'];
 var modulePlugins = [];
 
 if (isLocal) {
@@ -29,6 +29,9 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
+    preLoaders: [
+        { test: /\.json$/, loader: 'json'},
+    ],
     loaders: [{
       exclude: /node_modules/,
       loaders: moduleLoaders,
@@ -37,6 +40,6 @@ module.exports = {
   },
   plugins: modulePlugins,
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', '.json']
   }
 };
