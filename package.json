@@ -41,8 +41,10 @@
   "dependencies": {
     "axios": "^0.14.0",
     "json-loader": "^0.5.4",
+    "jsonp": "^0.2.0",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "underscore": "^1.8.3",
     "which-country": "^1.0.0",
     "youtube-api-search": "0.0.5"
   }

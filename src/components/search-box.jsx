@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import jsonp from 'jsonp';
+import _ from 'underscore';
 import YTSearch from 'youtube-api-search';
 import alpha2CountryCodes from '../countryCodes';
 
@@ -23,8 +24,9 @@ class SearchBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {term: null, suggesionList: []};
-    this.bindFunctionsToThis(['searchVideos', 'detectLocation',
-      'updateState']);
+    this.bindFunctionsToThis(['searchVideos', 'autoComplete', 'detectLocation',
+      'updateStateAndSearch']);
+    this.autoComplete = _.debounce(this.autoComplete, 500);
 
     this.detectLocation((countryCode) => {
       if (!countryCode)
@@ -41,8 +43,9 @@ class SearchBox extends React.Component {
     });
   }
 
-  updateState({target}) {
+  updateStateAndSearch({target}) {
     this.setState({term: target.value});
+    this.autoComplete(this.state.term);
   }
 
   searchVideos (term, countryCode) {
@@ -56,6 +59,17 @@ class SearchBox extends React.Component {
     axios.get(url)
     .then(({data}) => {
       this.props.onSearch(data.items);
+    });
+  }
+
+  autoComplete(term) {
+    jsonp(YOUTUBE_COMPLETE_URL + '&q=' + term, null, (err, data) => {
+      if (err)
+        console.error(err);
+      else {
+        let suggesionList = data[1].map(ar => ar[0]);
+        this.setState({suggesionList});
+      }
     });
   }
 
@@ -92,7 +106,8 @@ class SearchBox extends React.Component {
                 placeholder="Search..."
                 className="form-control"
                 onChange={this.updateStateAndSearch}
-                value={this.state.term} />
+                value={this.state.term}
+                list="suggesionData" />
               <span className="input-group-btn">
                 <button
                   type="submit"
@@ -102,6 +117,9 @@ class SearchBox extends React.Component {
                 </button>
               </span>
             </div>
+            <datalist id="suggesionData">
+              { this.state.suggesionList.map(val => <option> {val} </option>) }
+            </datalist>
           </div>
         </form>
       </div>
