@@ -1,17 +1,10 @@
-# ReduxSimpleStarter
+# ReactYoutube
+A simple youtube like app made in React using youtube API
 
-Interested in learning [Redux](https://www.udemy.com/react-redux/)?
-
-###Getting Started###
-
-There are two methods for getting started with this repo.
-
-####Familiar with Git?#####
-Checkout this repo, install dependencies, then start the gulp process with the following:
-
-```
-	> git clone git@github.com:StephenGrider/ReduxSimpleStarter.git
-	> cd ReduxSimpleStarter
-	> npm install
-	> npm start
-```
+### TODO
+ - [x] Build the app using just React without Redux
+ - [ ] Use Redux for data layer
+ - [ ] Use react-router, searched term should be displyed in URL.
+ - [ ] Display likes-dislikes and Views
+ - [ ] Display comments
+ - [ ] Support multiple video player size just like youtube
