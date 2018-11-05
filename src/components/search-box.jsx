@@ -7,7 +7,7 @@ import alpha2CountryCodes from '../countryCodes';
 
 var wc = require('which-country');
 
-const API_KEY = 'AIzaSyAfrBHMYIQf44kTgyFAX2blzHCqcwbCaLc';
+const API_KEY = 'AIzaSyDbjI5E0lFI7pQPW3-DxYzQ2kYpU-9dCS8';
 const GEO_API_URL = 'http://ws.geonames.org/countryCode?username=harryi3t';
 
 const YOUTUBE_BASE_URL = `https://www.googleapis.com/youtube/v3`;
